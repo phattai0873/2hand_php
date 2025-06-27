@@ -16,21 +16,25 @@ class RegisterController {
             empty($_POST['username']) ||
             empty($_POST['password']) ||
             empty($_POST['email']) ||
-            empty($_POST['sdt'])
+            empty($_POST['phone'])
         ) {
             echo "Thiếu thông tin. Vui lòng điền đầy đủ.";
+            var_dump($_POST);
             return;
         }
 
         $username = $_POST['username'];
         $password = $_POST['password'];
         $email    = $_POST['email'];
-        $sdt      = $_POST['sdt'];
+        $phone    = $_POST['phone'];
 
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         $userModel = new UserModel();
-        $success = $userModel->createUser($username, $hashedPassword, $email, $sdt);
+        $success = $userModel->createUser($username,
+         $hashedPassword,
+         $email, $phone ,"",
+         2);
 
         if ($success) {
             echo "Đăng ký thành công!";

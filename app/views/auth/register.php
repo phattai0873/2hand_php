@@ -16,7 +16,7 @@
         <input type="email" name="email" required><br><br>
 
         <label>Số điện thoại:</label>
-        <input type="text" name="sdt" required><br><br>
+        <input type="text" name="phone" required><br><br>
 
         <input type="submit" value="Đăng ký">
     </form>

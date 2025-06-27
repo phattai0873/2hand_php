@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username   = "root";
 $password   = "01219639408t";
-$database   = "php_DB";
+$database   = "Db_Shop";
 $port       = 3306;
 
 $conn = new mysqli($servername, $username, $password, $database, $port);

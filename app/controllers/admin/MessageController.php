@@ -22,3 +22,4 @@ class MessageController {
         include __DIR__ . '/../views/chat.php';
     }
 }
+?>

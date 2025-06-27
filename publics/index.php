@@ -1,4 +1,3 @@
-<!-- index.php (tại gốc dự án) -->
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -9,14 +8,13 @@
 <body>
 
 <?php
-// Load các controller cần thiết
-require_once __DIR__ . '/app/controllers/auth/LoginController.php';
-require_once __DIR__ . '/app/controllers/auth/RegisterController.php';
-require_once __DIR__ . '/app/controllers/auth/ForgotPasswordController.php';
-require_once __DIR__ . '/app/controllers/DashboardController.php';
+require_once __DIR__ . '/../app/controllers/auth/LoginController.php';
+require_once __DIR__ . '/../app/controllers/auth/RegisterController.php';
+require_once __DIR__ . '/../app/controllers/auth/ForgotPasswordController.php';
+require_once __DIR__ . '/../app/controllers/admin/DashboardController.php';
+require_once __DIR__ . '/../app/controllers/user/homeController.php';
 
-// Xác định action từ URL
-$action = $_GET['action'] ?? 'LoginForm';
+$action = $_GET['action'] ?? 'loginForm';
 
 switch ($action) {
     case 'login':
@@ -39,6 +37,9 @@ switch ($action) {
         break;
     case 'dashboard':
         (new DashboardController())->showDashboard();
+        break;
+    case 'home':
+        (new HomeController())->list_product();
         break;
     default:
         echo "Không tìm thấy action: $action";

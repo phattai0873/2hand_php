@@ -12,16 +12,29 @@ class LoginController {
 
     public function login() {
         session_start();
+
+        if (!isset($_POST['username'], $_POST['password'])) {
+            echo "Vui lòng nhập tài khoản và mật khẩu.";
+            return;
+        }
+
         $username = $_POST['username'];
         $password = $_POST['password'];
-
         
         $userModel = new UserModel();
         $user = $userModel->getUserByUsername($username);
 
         if ($user && password_verify($password, $user['password'])) {
+            session_start();
             $_SESSION['username'] = $user['username'];
-            header("Location: /2handhub/publics/index.php?action=Dashboard");
+            $_SESSION['id_role'] = $user['id_role'];
+
+            
+            if ($user['id_role'] == 1) {
+                header("Location: /2handhub/publics/index.php?action=dashboard");
+            } else {
+                header("Location: /2handhub/publics/index.php?action=landingPage");
+            }
         } else {
             echo "Sai tài khoản hoặc mật khẩu!";
             // echo '<pre>';
